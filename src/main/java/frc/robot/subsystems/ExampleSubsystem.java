@@ -4,18 +4,22 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.spark.SparkMax;
+
+import edu.wpi.first.wpilibj.CAN;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ExampleSubsystem extends SubsystemBase {
-  /** Creates a new ExampleSubsystem. */
-  public ExampleSubsystem() {}
+   public ExampleSubsystem() {}
 
   /**
    * Example command factory method.
    *
    * @return a command
    */
+
+  /////////////////////////////////////////////////////////////
   public Command exampleMethodCommand() {
     // Inline construction of command goes here.
     // Subsystem::RunOnce implicitly requires `this` subsystem.
@@ -24,6 +28,11 @@ public class ExampleSubsystem extends SubsystemBase {
           /* one-time action goes here */
         });
   }
+
+  //////////////////////////////////////////////////////////////
+  // driving forward / backward based on axial input 
+  public Command driveCommand(){
+    return null;}
 
   /**
    * An example method querying a boolean state of the subsystem (for example, a digital sensor).
