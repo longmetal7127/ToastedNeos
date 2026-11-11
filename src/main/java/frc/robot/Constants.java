@@ -14,6 +14,25 @@ package frc.robot;
  */
 public final class Constants {
   public static class OperatorConstants {
+
+// Controller 
     public static final int kDriverControllerPort = 0;
+// Drivetrain 
+    public static final int CANleftLeader = 1;
+    public static final int CANrightLeader = 2;
+    public static final int CANleftFollower = 3;
+    public static final int CANrightFollower = 4;
+// Shooter 
+    public static final int CANShooter1 = 5;
+    public static final int CANShooter2 = 5;
+
+
+// Intake  
+    public static final int CANIntake = 7;
+    public static final double intakeSpeed = 1.0;
+
+
+
+
   }
 }

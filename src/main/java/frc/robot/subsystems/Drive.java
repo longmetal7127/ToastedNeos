@@ -6,6 +6,9 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
+import frc.robot.Constants;
+import frc.robot.Constants.OperatorConstants;;
+
 public class Drive extends SubsystemBase {
     //////////////////////////////////////////////////////////
 private SparkMax LeftLeader;
@@ -19,10 +22,11 @@ DifferentialDrive mDrive;
 
     // In this section we declare and configure our motors and sparkmax inversion values , this allows us to control what direction the power is directed in 
 
-LeftLeader = new SparkMax(0, MotorType.kBrushless);
-Leftfollower = new SparkMax(1, MotorType.kBrushless);
-RightLeader = new SparkMax(2, MotorType.kBrushless);
-Rightfollower= new SparkMax(3, MotorType.kBrushless);
+LeftLeader = new SparkMax(Constants.OperatorConstants.CANleftLeader, MotorType.kBrushless);
+Leftfollower = new SparkMax(Constants.OperatorConstants.CANleftFollower, MotorType.kBrushless);
+RightLeader = new SparkMax(Constants.OperatorConstants.CANrightLeader, MotorType.kBrushless);
+Rightfollower= new SparkMax(Constants.OperatorConstants.CANrightFollower, MotorType.kBrushless);
+
 
 SparkMaxConfig leftFollowerSparkMaxConfig = new SparkMaxConfig();
 leftFollowerSparkMaxConfig.follow(LeftLeader);
