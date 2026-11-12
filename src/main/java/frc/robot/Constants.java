@@ -24,7 +24,9 @@ public final class Constants {
     public static final int CANrightFollower = 4;
 // Shooter 
     public static final int CANShooter1 = 5;
-    public static final int CANShooter2 = 5;
+    public static final int CANShooter2 = 6;
+    public static final double Shooterspeed = 1.0;
+    
 
 
 // Intake  

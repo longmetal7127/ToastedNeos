@@ -20,9 +20,20 @@ public Intake()
 intakeConfig.smartCurrentLimit(40); // limits motor current 
 intakeFlex.configure(intakeConfig, SparkFlex.ResetMode.kResetSafeParameters ,SparkFlex.PersistMode.kPersistParameters);
 }
-public void setIntakeSpeed(double speed)
+
+//Spins up the intake Motor 
+public void spinup(double speed)
 { 
-    intakeFlex.set(Constants.OperatorConstants.intakeSpeed);
+    intakeFlex.set(speed);
 }
+//Stops the Intake Motor 
+public void spindown(double speed)
+{ 
+    intakeFlex.set(speed);
+}
+
+
+
+
     
 }

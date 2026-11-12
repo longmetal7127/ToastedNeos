@@ -27,7 +27,7 @@ Leftfollower = new SparkMax(Constants.OperatorConstants.CANleftFollower, MotorTy
 RightLeader = new SparkMax(Constants.OperatorConstants.CANrightLeader, MotorType.kBrushless);
 Rightfollower= new SparkMax(Constants.OperatorConstants.CANrightFollower, MotorType.kBrushless);
 
-
+// configuring sparkmaxes to invert and follow (ask Ash if needed )
 SparkMaxConfig leftFollowerSparkMaxConfig = new SparkMaxConfig();
 leftFollowerSparkMaxConfig.follow(LeftLeader);
 Leftfollower.configure(leftFollowerSparkMaxConfig, SparkMax.ResetMode.kResetSafeParameters, SparkMax.PersistMode.kPersistParameters);

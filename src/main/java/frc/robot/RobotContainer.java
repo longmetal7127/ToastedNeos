@@ -9,6 +9,8 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shoot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -27,22 +29,28 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 */
-
+// the controller object is instansiated 
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
-      private final Drive mDrive = new Drive();
+// New drivtrain Mechanism is instansiated 
+private final Drive mDrive = new Drive();
+
+// we initialize our intake here 
+Intake mIntake = new Intake();
+
+//we initialize our shooter here 
+Shoot mShoot = new Shoot();
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
-
-    //test to see if ssh worked
     configureBindings();
 // still need to understand ts bro -> 
     mDrive.setDefaultCommand(
       new edu.wpi.first.wpilibj2.command.RunCommand
     (
-() -> mDrive.arcadeDrive(-m_driverController.getLeftY(),m_driverController.getRightX()) , mDrive 
+    () -> mDrive.arcadeDrive(-m_driverController.getLeftY(),m_driverController.getRightX()) , mDrive 
     )
     );
   }
@@ -57,18 +65,23 @@ public class RobotContainer {
    * joysticks}.
    */
   
-  private void configureBindings() {
+  private void configureBindings()
+  {
+    // this is used to configure Buttons on the controller 
 
+    // this specific method configures the Left bumper
+    // Run End basically adds an action when run and when the action ends , the action in this case being the enabling of the intake button 
+    m_driverController.leftBumper().whileTrue
+    (mIntake.runEnd(() -> mIntake.spinup(Constants.OperatorConstants.intakeSpeed),() -> mIntake.spindown(0) ));
 
-    // old example code 
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-  /*   new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
-
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());*/
-  }
+    // This is used to configure the right bumper which shoots while outputting fuel into the shooter 
+    m_driverController.rightBumper().whileTrue
+    (   mShoot.runEnd(()->mShoot.shoot(),()->mShoot.stopShoot()).alongWith(
+        mIntake.runEnd(()->mIntake.spinup(-1),()->mIntake.spindown(0))));
+      
+      
+      
+      }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
