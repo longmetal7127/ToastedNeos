@@ -29,14 +29,23 @@ Rightfollower= new SparkMax(Constants.OperatorConstants.CANrightFollower, MotorT
 
 // configuring sparkmaxes to invert and follow (ask Ash if needed )
 SparkMaxConfig leftFollowerSparkMaxConfig = new SparkMaxConfig();
+SparkMaxConfig leftLeaderSparkMaxConfig = new SparkMaxConfig();
+SparkMaxConfig rightLeaderSparkMaxConfig = new SparkMaxConfig();
+SparkMaxConfig rightFollowerSparkMaxConfig = new SparkMaxConfig();
+
+leftLeaderSparkMaxConfig.smartCurrentLimit(60, 80);
+leftFollowerSparkMaxConfig.smartCurrentLimit(60, 80);
+rightLeaderSparkMaxConfig.smartCurrentLimit(60, 80);
+rightFollowerSparkMaxConfig.smartCurrentLimit(60, 80);
+
+LeftLeader.configure(leftLeaderSparkMaxConfig, SparkMax.ResetMode.kResetSafeParameters, SparkMax.PersistMode.kPersistParameters);
+
 leftFollowerSparkMaxConfig.follow(LeftLeader);
 Leftfollower.configure(leftFollowerSparkMaxConfig, SparkMax.ResetMode.kResetSafeParameters, SparkMax.PersistMode.kPersistParameters);
 
-SparkMaxConfig rightLeaderSparkMaxConfig = new SparkMaxConfig();
 rightLeaderSparkMaxConfig.inverted(true);
 RightLeader.configure(rightLeaderSparkMaxConfig,SparkMax.ResetMode.kResetSafeParameters, SparkMax.PersistMode.kPersistParameters);
 
-SparkMaxConfig rightFollowerSparkMaxConfig = new SparkMaxConfig();
 rightFollowerSparkMaxConfig.follow(RightLeader);
 Rightfollower.configure(rightFollowerSparkMaxConfig, SparkMax.ResetMode.kResetSafeParameters, SparkMax.PersistMode.kPersistParameters);
 

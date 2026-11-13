@@ -20,14 +20,14 @@ public class Shoot extends SubsystemBase
 
 // declaring our motors to use for the shooter 
  SparkMax shoot1 = new SparkMax(Constants.OperatorConstants.CANShooter1,MotorType.kBrushless);
- SparkMax shoot2 = new SparkMax(Constants.OperatorConstants.CANShooter1,MotorType.kBrushless);
+ SparkMax shoot2 = new SparkMax(Constants.OperatorConstants.CANShooter2,MotorType.kBrushless);
  SparkMaxConfig C_Shoot1 = new SparkMaxConfig();
  SparkMaxConfig C_Shoot2 = new SparkMaxConfig();
 
 public Shoot() {
-C_Shoot2.follow(shoot1);
-C_Shoot2.inverted(true);
-shoot2.configure(C_Shoot1, ResetMode.kResetSafeParameters,PersistMode.kPersistParameters);}
+C_Shoot2.follow(shoot1,true);
+shoot2.configure(C_Shoot1, ResetMode.kResetSafeParameters,PersistMode.kPersistParameters);
+}
 //fix shoot because intake needs to be running here as well 
 
 //Command to shoot 
