@@ -71,13 +71,13 @@ Shoot mShoot = new Shoot();
 
     // this specific method configures the Left bumper
     // Run End basically adds an action when run and when the action ends , the action in this case being the enabling of the intake button 
-    m_driverController.leftBumper().whileTrue
-    (mIntake.runEnd(() -> mIntake.spinup(Constants.OperatorConstants.intakeSpeed),() -> mIntake.spindown(0) ));
+    m_driverController.leftTrigger().whileTrue
+    (mIntake.runEnd(() -> mIntake.spinup(-Constants.OperatorConstants.intakeSpeed),() -> mIntake.spindown(0) ));
 
     // This is used to configure the right bumper which shoots while outputting fuel into the shooter 
-    m_driverController.rightBumper().whileTrue
+    m_driverController.rightTrigger().whileTrue
     (   mShoot.runEnd(()->mShoot.shoot(),()->mShoot.stopShoot()).alongWith(
-        mIntake.runEnd(()->mIntake.spinup(-1),()->mIntake.spindown(0))));
+        mIntake.runEnd(()->mIntake.spinup(1),()->mIntake.spindown(0))));
       
       
       
