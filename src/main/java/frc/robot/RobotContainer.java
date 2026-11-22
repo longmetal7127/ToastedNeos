@@ -47,12 +47,7 @@ Shoot mShoot = new Shoot();
     // Configure the trigger bindings
     configureBindings();
 // still need to understand ts bro -> 
-    mDrive.setDefaultCommand(
-      new edu.wpi.first.wpilibj2.command.RunCommand
-    (
-    () -> mDrive.arcadeDrive(-m_driverController.getLeftY(),m_driverController.getRightX()) , mDrive 
-    )
-    );
+    mDrive.setDefaultCommand( new edu.wpi.first.wpilibj2.command.RunCommand (() -> mDrive.arcadeDrive(-m_driverController.getLeftY(),m_driverController.getRightX()) , mDrive ) );
   }
 
   /**

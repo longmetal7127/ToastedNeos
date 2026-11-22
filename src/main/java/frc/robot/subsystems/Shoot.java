@@ -26,7 +26,8 @@ public class Shoot extends SubsystemBase
 
 public Shoot() {
 C_Shoot2.follow(shoot1,true);
-shoot2.configure(C_Shoot1, ResetMode.kResetSafeParameters,PersistMode.kPersistParameters);
+shoot2.configure(C_Shoot2, ResetMode.kResetSafeParameters,PersistMode.kPersistParameters);
+shoot1.configure(C_Shoot1,ResetMode.kResetSafeParameters,PersistMode.kPersistParameters );
 }
 //fix shoot because intake needs to be running here as well 
 
